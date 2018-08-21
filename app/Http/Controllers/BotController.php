@@ -32,7 +32,9 @@ class BotController extends Controller
 
         $callSendApi->make($text->message('Olá, eu sou um bot...'));
         $callSendApi->make($text->message('Você digitou: '. $message));
-
+        
+        $message = new Image($senderId);
+        $callSendApi->make($text->message('Você digitou: '. $message->message('http://testing-companies.com/wp-content/uploads/2017/03/TEST.png')));
         return '';
     }
 }

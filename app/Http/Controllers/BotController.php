@@ -18,7 +18,7 @@ class BotController extends Controller
     {
         $webhook = new WebHook();
         $subscribe = $webhook->check(config('botfb.validationToken'));
-
+        print($webhook);
         if (!$subscribe){
             abort(403, "Unauthorized action.");
         }

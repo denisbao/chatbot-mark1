@@ -56,7 +56,7 @@ class BotController extends Controller
 
         //TESTE PARA ENVIO DE IMAGENS:
         $message = new Image($senderId);
-        $callSendApi->make($text->message($message->message('https://boiling-dawn-10043.herokuapp.com/img/robot.png')));
+        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/img/robot.png'));
 
 
     }

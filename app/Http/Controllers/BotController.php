@@ -42,21 +42,25 @@ class BotController extends Controller
         $callSendApi->make($text->message('Olá, eu sou um bot...'));
         $callSendApi->make($text->message('Você digitou: '. $message));
 
-//        //TESTE PARA ENVIO DE AUDIO:
-//        $message = new Audio($senderId);
-//        $callSendApi->make($text->message($message->message('https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/robot.png')));
-//
-//        //TESTE PARA ENVIO DE ARQUIVOS:
-//        $message = new File($senderId);
-//        $callSendApi->make($text->message($message->message('https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/robot.png')));
-//
-//        //TESTE PARA ENVIO DE VIDEOS:
-//        $message = new Video($senderId);
-//        $callSendApi->make($text->message($message->message('https://d1nhio0ox7pgb.cloudfront.net/_img/g_collection_png/standard/256x256/robot.png')));
+        //TESTE PARA ENVIO DE AUDIO:
+        $message = new Audio($senderId);
+        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/audio/audio-test.mp3'));
+
+        //TESTE PARA ENVIO DE ARQUIVOS:
+        $message = new File($senderId);
+        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/file/arquivo.zip'));
+
+        //TESTE PARA ENVIO DE VIDEOS:
+        $message = new Video($senderId);
+        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/video/video-test.mp4'));
 
         //TESTE PARA ENVIO DE IMAGENS:
         $message = new Image($senderId);
         $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/img/robot.png'));
+
+        //TESTE PARA ENVIO DE VIDEOS COM LINK EXTERNO:
+        $message = new Video($senderId);
+        $callSendApi->make($message->message('https://www.youtube.com/watch?v=5C1WB38Dei4'));
 
 
     }

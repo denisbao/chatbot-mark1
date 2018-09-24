@@ -65,8 +65,8 @@ class BotController extends Controller
         $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/img/robot.png'));
 
         $message = new ButtonsTemplate($senderId);
-        $message->add(new Button('web_url', '(9Gag'), 'https://www.9gag.com');
-        $message->add(new Button('web_url', '(Google'), 'https://www.google.com');
+        $message->add(new Button('web_url', '(9Gag', 'https://www.9gag.com'));
+        $message->add(new Button('web_url', '(Google', 'https://www.google.com'));
         $callSendApi->make($message->message('Testando botões'));
 
     }

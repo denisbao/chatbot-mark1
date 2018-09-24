@@ -13,6 +13,8 @@ use CodeBot\Message\Image;
 use CodeBot\Message\Text;
 use CodeBot\Message\Video;
 use CodeBot\SenderRequest;
+use CodeBot\Element\Button;
+use CodeBot\TemplatesMessage\ButtonsTemplate;
 use CodeBot\WebHook;
 use Illuminate\Http\Request;
 
@@ -61,6 +63,11 @@ class BotController extends Controller
         $message = new Image($senderId);
         $callSendApi->make($text->message('Quer ver um nude?'));
         $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/img/robot.png'));
+
+        $message = new ButtonsTemplate($senderId);
+        $message->add(new Button('web_url', '(9Gag'), 'https://www.9gag.com');
+        $message->add(new Button('web_url', '(Google'), 'https://www.google.com');
+        $callSendApi->make($message->message('Testando botões'));
 
     }
 }

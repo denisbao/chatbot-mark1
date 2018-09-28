@@ -76,6 +76,7 @@ class BotController extends Controller
         $product = new Product('produto1', 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/homepod/watch-product-lockup-callout.png', 'teste_imagem', $button);
         $button = new Button('web_url', null, 'http://www.9gag.com');
         $product2 = new Product('produto2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/9GAG_new_logo.svg/320px-9GAG_new_logo.svg.png', 'teste_imagem', $button);
+
         $template = new GenericTemplate($senderId);
         $template->add($product);
         $template->add($product2);
@@ -85,6 +86,7 @@ class BotController extends Controller
         $product = new Product('produto1', 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/homepod/watch-product-lockup-callout.png', 'teste_imagem', $button);
         $button = new Button('web_url', null, 'http://www.9gag.com');
         $product2 = new Product('produto2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/9GAG_new_logo.svg/320px-9GAG_new_logo.svg.png', 'teste_imagem', $button);
+
         $template = new ListTemplate($senderId);
         $template->add($product);
         $template->add($product2);

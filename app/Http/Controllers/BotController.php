@@ -14,7 +14,10 @@ use CodeBot\Message\Text;
 use CodeBot\Message\Video;
 use CodeBot\SenderRequest;
 use CodeBot\Element\Button;
+use CodeBot\Element\Product;
 use CodeBot\TemplatesMessage\ButtonsTemplate;
+use CodeBot\TemplatesMessage\GenericTemplate;
+use CodeBot\TemplatesMessage\ListTemplate;
 use CodeBot\WebHook;
 use Illuminate\Http\Request;
 
@@ -68,6 +71,25 @@ class BotController extends Controller
         $message->add(new Button('web_url', '9Gag', 'https://www.9gag.com'));
         $message->add(new Button('web_url', 'Google', 'https://www.google.com'));
         $callSendApi->make($message->message('Testando botões'));
+
+        $button = new Button('web_url', null, 'http://www.google.com');
+        $product = new Product('produto1', 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/homepod/watch-product-lockup-callout.png', 'teste_imagem', $button);
+        $button = new Button('web_url', null, 'http://www.9gag.com');
+        $product2 = new Product('produto2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/9GAG_new_logo.svg/320px-9GAG_new_logo.svg.png', 'teste_imagem', $button);
+        $template = new GenericTemplate($senderId);
+        $template->add($product);
+        $template->add($product2);
+        $callSendApi->make($template->message(('naousado')));
+
+        $button = new Button('web_url', null, 'http://www.google.com');
+        $product = new Product('produto1', 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/homepod/watch-product-lockup-callout.png', 'teste_imagem', $button);
+        $button = new Button('web_url', null, 'http://www.9gag.com');
+        $product2 = new Product('produto2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/9GAG_new_logo.svg/320px-9GAG_new_logo.svg.png', 'teste_imagem', $button);
+        $template = new ListTemplate($senderId);
+        $template->add($product);
+        $template->add($product2);
+        $callSendApi->make($template->message(('naousado')));
+
 
     }
 }

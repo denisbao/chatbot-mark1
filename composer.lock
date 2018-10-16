@@ -8,16 +8,16 @@
     "packages": [
         {
             "name": "denisbao/facebook-bot-sdk",
-            "version": "v1.3.0",
+            "version": "v1.3.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/denisbao/facebook-bot-sdk.git",
-                "reference": "70b4635d2f5f6f4c58160182e485fa1db82736cc"
+                "reference": "f56c80ee1ad71973614d157d2b229efbcdee0d21"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/denisbao/facebook-bot-sdk/zipball/70b4635d2f5f6f4c58160182e485fa1db82736cc",
-                "reference": "70b4635d2f5f6f4c58160182e485fa1db82736cc",
+                "url": "https://api.github.com/repos/denisbao/facebook-bot-sdk/zipball/f56c80ee1ad71973614d157d2b229efbcdee0d21",
+                "reference": "f56c80ee1ad71973614d157d2b229efbcdee0d21",
                 "shasum": ""
             },
             "require": {
@@ -41,7 +41,7 @@
                     "email": "denis.tpd@gmail.com"
                 }
             ],
-            "time": "2018-10-16T18:02:57+00:00"
+            "time": "2018-10-16T19:31:44+00:00"
         },
         {
             "name": "dnoegel/php-xdg-base-dir",

@@ -11,6 +11,7 @@ use CodeBot\Message\Audio;
 use CodeBot\Message\File;
 use CodeBot\Message\Image;
 use CodeBot\Message\Text;
+use CodeBot\Build\Solid;
 use CodeBot\Message\Video;
 use CodeBot\SenderRequest;
 use CodeBot\Element\Button;
@@ -39,59 +40,53 @@ class BotController extends Controller
         $sender = new SenderRequest;
         $senderId = $sender->getSenderId();
         $message = $sender->getMessage();
+        $postback = $sender->getPostback();
 
-        $text = new Text($senderId);
-        $callSendApi = new CallSendApi(config('botfb.pageAccessToken'));
+        $bot = Solid::factory();
+        Solid::pageAccessToken(config('botfb.pageAccessToken'));
+        Solid::setSender($senderId);
 
-        //TESTE PARA ENVIO DE TEXTO:
-        $callSendApi->make($text->message('Olá, eu sou um bot...'));
-        $callSendApi->make($text->message('Você digitou: '. $message));
+        if ($postback){
+            $bot->message('text', 'Você chamou o postback' . $postback);
+            return '';
+        }
 
-//        //TESTE PARA ENVIO DE AUDIO:
-//        $message = new Audio($senderId);
-//        $callSendApi->make($text->message('Escuta uma musiquinha ai:'));
-//        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/audio/audio-test.mp3'));
-//
-//        //TESTE PARA ENVIO DE ARQUIVOS:
-//        $message = new File($senderId);
-//        $callSendApi->make($text->message('Confira esse arquivo ai:'));
-//        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/file/arquivo.zip'));
-//
-//        //TESTE PARA ENVIO DE VIDEOS:
-//        $message = new Video($senderId);
-//        $callSendApi->make($text->message('Já viu esse video?'));
-//        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/video/video-test.mp4'));
-//
-//        //TESTE PARA ENVIO DE IMAGENS:
-//        $message = new Image($senderId);
-//        $callSendApi->make($text->message('Quer ver um nude?'));
-//        $callSendApi->make($message->message('https://boiling-dawn-10043.herokuapp.com/img/robot.png'));
+        // TESTE: ENVIO DE TEXTO:
+        $bot->message('text','Olá, eu sou um bot...');
+        $bot->message('text','Você acabou de digitar:' . $message);
 
-        $message = new ButtonsTemplate($senderId);
-        $message->add(new Button('web_url', '9Gag', 'https://www.9gag.com'));
-        $message->add(new Button('web_url', 'Google', 'https://www.google.com'));
-        $callSendApi->make($message->message('Testando botões'));
+        // TESTE: ENVIO DE IMAGEM:
+        $bot->message('text','Vou testar uma imagem');
+        $bot->message('image', 'https://boiling-dawn-10043.herokuapp.com/img/robot.png');
 
-        $button = new Button('web_url', null, 'http://www.google.com');
-        $product = new Product('produto1', 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/homepod/watch-product-lockup-callout.png', 'teste_imagem', $button);
-        $button = new Button('web_url', null, 'http://www.9gag.com');
-        $product2 = new Product('produto2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/9GAG_new_logo.svg/320px-9GAG_new_logo.svg.png', 'teste_imagem', $button);
+        // TESTE: TEMPLATE DE BOTÕES:
+        $bot->message('text','Vou testar alguns botões');
+        $buttons = [
+            new Button('web_url', '9Gag', 'https://www.9gag.com'),
+            new Button('web_url', 'Google', 'https://www.google.com'),
+        ];
+        $bot->template('buttons', 'Quer visitar algum site?', $buttons);
 
-        $template = new GenericTemplate($senderId);
-        $template->add($product);
-        $template->add($product2);
-        $callSendApi->make($template->message(('naousado')));
+        // TESTE: TEMPLATE DE CARROCEL:
+        $bot->message('text','Vou testar um carrocel');
+        $products = [
+            new Product(
+                'produto1',
+                'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/homepod/watch-product-lockup-callout.png',
+                'Apple',
+                new Button('web_url', null, 'http://www.apple.com')
+            ),
+            new Product(
+                'produto2',
+                'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/9GAG_new_logo.svg/320px-9GAG_new_logo.svg.png',
+                '9Gag',
+                new Button('web_url', null, 'http://www.9gag.com')
+            )
+        ];
+        $bot->template('generic', 'Confira esses produtos?', $products);
 
-        $button = new Button('web_url', null, 'http://www.google.com');
-        $product = new Product('produto1', 'https://support.apple.com/library/content/dam/edam/applecare/images/en_US/homepod/watch-product-lockup-callout.png', 'teste_imagem', $button);
-        $button = new Button('web_url', null, 'http://www.9gag.com');
-        $product2 = new Product('produto2', 'https://upload.wikimedia.org/wikipedia/commons/thumb/9/97/9GAG_new_logo.svg/320px-9GAG_new_logo.svg.png', 'teste_imagem', $button);
-
-        $template = new ListTemplate($senderId);
-        $template->add($product);
-        $template->add($product2);
-        $callSendApi->make($template->message(('naousado')));
-
+        //TESTE: TEMPLATE DE LISTA:
+        $bot->template('list', 'Confira essa lista produtos!', $products);
 
     }
 }

@@ -1,95 +1,118 @@
-<!doctype html>
-<html lang="{{ app()->getLocale() }}">
-    <head>
-        <meta charset="utf-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<!DOCTYPE html>
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
 
-        <title>Laravel</title>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-        <!-- Fonts -->
-        <link href="https://fonts.googleapis.com/css?family=Raleway:100,600" rel="stylesheet" type="text/css">
+    <!-- CSRF Token -->
+    <meta name="csrf-token" content="{{ csrf_token() }}">
 
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: #fff;
-                color: #636b6f;
-                font-family: 'Raleway', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                margin: 0;
-            }
+    <title>{{ config('app.name', 'Laravel') }}</title>
 
-            .full-height {
-                height: 100vh;
-            }
+    <!-- Fonts -->
+    <link rel="dns-prefetch" href="https://fonts.gstatic.com">
 
-            .flex-center {
-                align-items: center;
-                display: flex;
-                justify-content: center;
-            }
+    <!-- Styles -->
+    <link href="{{ mix('css/app.css') }}" rel="stylesheet">
+</head>
 
-            .position-ref {
-                position: relative;
-            }
+<body>
+    <header>
+        <nav class="navbar">
+            <div class="wrapper">
 
-            .top-right {
-                position: absolute;
-                right: 10px;
-                top: 18px;
-            }
-
-            .content {
-                text-align: center;
-            }
-
-            .title {
-                font-size: 84px;
-            }
-
-            .links > a {
-                color: #636b6f;
-                padding: 0 25px;
-                font-size: 12px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .m-b-md {
-                margin-bottom: 30px;
-            }
-        </style>
-    </head>
-    <body>
-        <div class="flex-center position-ref full-height">
-            @if (Route::has('login'))
-                <div class="top-right links">
-                    @auth
-                        <a href="{{ url('/home') }}">Home</a>
-                    @else
-                        <a href="{{ route('login') }}">Login</a>
-                        <a href="{{ route('register') }}">Register</a>
-                    @endauth
+                <a data-target="slide-out" class="menu-btn sidenav-trigger show-on-large">
+                    <i class="material-icons">menu</i>
+                </a>
+                <div class="container">
+                    <a class="brand-logo center">
+                        ChabotMark1
+                    </a>
                 </div>
-            @endif
+            </div>
+        </nav>
 
-            <div class="content">
-                <div class="title m-b-md">
-                    Laravel
+    <ul id="slide-out" class="sidenav">
+        <li>
+            <div class="user-view">
+                <div class="background"></div>
+                <div class="row valign-wrapper user-menu-header">
+                    <div class="col col s4 m4 l4">
+                        <img src="https://s3.sa-east-1.amazonaws.com/contador-online/development/users/account/1539494704.jpeg" alt="avatar" class="avatar">
+                    </div>
+                    <div class="col col s8 m8 l8">
+                        <a class="dropdown-profile waves-effect waves-light white-text"
+                           data-target="profile-dropdown-nav">
+                            Nome
+                            <i class="material-icons" style="font-size: 20px;">
+                                arrow_drop_down</i>
+                        </a>
+                        <ul id="profile-dropdown-nav" class="dropdown-content">
+                            <li><a href="#">
+                                    <i class="material-icons">account_circle</i>Meu Perfil</a>
+                            </li>
+                        </ul>
+                    </div>
                 </div>
 
-                <div class="links">
-                    <a href="https://laravel.com/docs">Documentation</a>
-                    <a href="https://laracasts.com">Laracasts</a>
-                    <a href="https://laravel-news.com">News</a>
-                    <a href="https://forge.laravel.com">Forge</a>
-                    <a href="https://github.com/laravel/laravel">GitHub</a>
+
+            </div>
+        </li>
+
+        <li class="">
+            <a href="#" class="waves-effect waves-blue">
+                <i class="material-icons">business</i>
+                Empresas
+            </a>
+        </li>
+
+
+        <li class="">
+            <a href="#" class="waves-effect waves-orange">
+                <i class="material-icons">question_answer</i>
+                Chamados
+            </a>
+        </li>
+
+    </ul>
+
+</header>
+
+<main>
+    <section id="app">
+        <div class="container">
+            <div class="card">
+                <div class="card-content">
+
+
+
+
+
+
+
+
                 </div>
             </div>
         </div>
-    </body>
+    </section>
+</main>
+
+<footer class="footer">
+    <div class="copyright">
+        <div class="container">
+
+            &copy {{ date('Y') }} Copyright | {{ config('app.name', 'Laravel') }}
+            <span class="hide-on-small-only">
+         | All rights reserved.
+       </span>
+
+        </div>
+    </div>
+
+</footer>
+
+<script src="{{ mix('js/bootstrap.js') }}"></script>
+
+</body>
 </html>

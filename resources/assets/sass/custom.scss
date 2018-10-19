@@ -1,0 +1,44 @@
+body {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+    font-family: 'Roboto', sans-serif;
+    background-color: whitesmoke;
+}
+
+.primary-color {
+    background-color: $primary-color;
+}
+
+.secondary-color {
+    background-color: $primary-color;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.form-container {
+    padding: 20px 35px;
+}
+
+.sidenav li.active {
+    background-color: $primary-color;
+}
+
+.card .card-title {
+    font-size: 1.5rem;
+}
+
+.card-title i {
+    line-height: unset !important;
+}
+
+
+nav .sidenav-trigger {
+    margin-top: 4px;
+}
+
+.menu-logo{
+  height: 46px;margin-top: 6px;
+}

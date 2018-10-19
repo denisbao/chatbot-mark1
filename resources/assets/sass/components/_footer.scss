@@ -1,0 +1,10 @@
+.footer{
+  & {
+    background-color: $background-color;
+    padding: 3em;
+  }
+  >.copyright {
+    @extend .center-align;
+    color:#949494;
+  }
+}

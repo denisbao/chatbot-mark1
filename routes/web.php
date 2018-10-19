@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/home', function () {
+    return view('home');
+});
+
 Route::get('/', function () {
 
     $text = (new \CodeBot\Message\Text(1))->message("Olá");

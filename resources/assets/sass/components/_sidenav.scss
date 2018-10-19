@@ -1,0 +1,19 @@
+.sidenav .user-view {
+    padding: 20px 10px 10px !important;
+    margin-bottom: 0px !important;
+}
+
+  .sidenav .collapsible-header, .sidenav.fixed .collapsible-header{
+    padding: 0 32px;
+  }
+  .sidenav .collapsible li, .sidenav.fixed .collapsible li{
+    margin-left: 5px;
+  }
+  .sidenav .user-view .background{
+    background-color: #fbb040 !important;
+    bottom: -10px
+  }
+
+.sidenav li.active{
+  background-color: #e69a03!important;
+}

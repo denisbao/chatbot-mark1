@@ -1,0 +1,25 @@
+.navbar{
+  & {
+    @extend .navbar-fixed;
+    height: 56px !important;
+  }
+
+  >.wrapper{
+    @extend .nav-wrapper;
+  }
+
+  >.wrapper >.menu-btn{
+    @extend .waves-effect;
+    @extend .btn-floating;
+    background-color: $primary-color !important;
+    color:#eee;
+    margin-top: 0.7em;
+    box-shadow: none !important;
+  }
+
+  > .wrapper >.menu-btn:hover {
+    color:#fff;
+    background-color: rgba(0,0,0,.12) !important;
+  }
+
+}

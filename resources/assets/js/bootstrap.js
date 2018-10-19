@@ -1,4 +1,3 @@
-
 window._ = require('lodash');
 window.Popper = require('popper.js').default;
 
@@ -10,13 +9,12 @@ window.Popper = require('popper.js').default;
 
 try {
     window.$ = window.jQuery = require('jquery');
-
-    require('bootstrap');
+    require('materialize-css/dist/js/materialize.js');
+    require('./plugins/materialize.js');
 } catch (e) {}
-
 /**
  * We'll load the axios HTTP library which allows us to easily issue requests
- * to our Laravel back-end. This library automatically handles sending the
+ * to our Laravel back-end. This li dbrary automatically handles sending the
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 

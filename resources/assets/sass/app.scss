@@ -1,14 +1,16 @@
-
 // Fonts
 @import url("https://fonts.googleapis.com/css?family=Raleway:300,400,600");
+@import url('https://fonts.googleapis.com/css?family=Roboto');
+@import url('https://fonts.googleapis.com/icon?family=Material+Icons');
 
 // Variables
 @import "variables";
+@import 'components/navbar';
+@import 'components/footer';
+@import 'components/sidenav';
+@import 'components/avatar';
 
-// Bootstrap
-@import '~bootstrap/scss/bootstrap';
+// materializecss
+@import '~materialize-css/sass/materialize';
 
-.navbar-laravel {
-  background-color: #fff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
-}
+@import './custom';

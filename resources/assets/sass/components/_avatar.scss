@@ -1,0 +1,9 @@
+.avatar{
+  & {
+    @extend .circle;
+    @extend .center-align;
+    object-fit: cover;
+    width: 120px;
+    height:120px;
+  }
+}

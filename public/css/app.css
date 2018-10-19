@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Raleway:300,400,600);@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/icon?family=Material+Icons);.navbar {
+@import url(https://fonts.googleapis.com/css?family=Roboto);@import url(https://fonts.googleapis.com/icon?family=Material+Icons);.navbar {
   height: 56px !important;
 }
 
@@ -9668,10 +9668,5 @@ main {
 
 nav .sidenav-trigger {
   margin-top: 4px;
-}
-
-.menu-logo {
-  height: 46px;
-  margin-top: 6px;
 }
 

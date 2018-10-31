@@ -19,6 +19,11 @@
         "materialize": "^1.0.0",
         "materialize-css": "^1.0.0",
         "popper.js": "^1.12",
-        "vue": "^2.5.7"
+        "vue": "^2.5.7",
+        "vue-router": "^3.0.1"
+    },
+    "dependencies": {
+        "sweetalert": "^2.1.0",
+        "vuex": "^3.0.1"
     }
 }

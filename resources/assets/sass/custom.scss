@@ -6,14 +6,6 @@ body {
     background-color: whitesmoke;
 }
 
-.primary-color {
-    background-color: $primary-color;
-}
-
-.secondary-color {
-    background-color: $primary-color;
-}
-
 main {
     flex: 1 0 auto;
 }
@@ -37,3 +29,11 @@ main {
 nav .sidenav-trigger {
     margin-top: 4px;
 }
+
+#main-nav {
+    a:hover, a:focus {
+        color: #fff;
+        text-decoration: none;
+    }
+}
+

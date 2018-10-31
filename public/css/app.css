@@ -9636,14 +9636,6 @@ body {
   background-color: whitesmoke;
 }
 
-.primary-color {
-  background-color: #342f86;
-}
-
-.secondary-color {
-  background-color: #342f86;
-}
-
 main {
   -webkit-box-flex: 1;
       -ms-flex: 1 0 auto;
@@ -9668,5 +9660,11 @@ main {
 
 nav .sidenav-trigger {
   margin-top: 4px;
+}
+
+#main-nav a:hover,
+#main-nav a:focus {
+  color: #fff;
+  text-decoration: none;
 }
 

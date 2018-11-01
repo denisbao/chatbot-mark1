@@ -35,7 +35,7 @@ class BotController extends Controller
 
         $postback = Postback::where('value', $postback)->first();
 
-        foreach ($postback->message as $message) {
+        foreach ($postback->messages as $message) {
             (new MessagesBuilderRepository)->createMessage($bot, $message);
         }
 

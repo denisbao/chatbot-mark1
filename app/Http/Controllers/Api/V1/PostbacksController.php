@@ -12,6 +12,7 @@ class PostbacksController extends Controller
     use \App\Http\Controllers\ApiControllerTrait;
 
     protected $model;
+    protected $relationships = ['Messages'];
 
     public function __construct(Postback $model)
     {
@@ -21,16 +22,22 @@ class PostbacksController extends Controller
     public function setGetStartedButton($id)
     {
         $postback = Postback::where('id', $id)->firstOrFail();
+
+
+        $bot = Solid::factory();
+        Solid::pageAccessToken(config('botfb.pageAccessToken'));
+
+        try {
+            $bot->addGetStartedButton($postback->value);
+        }catch(RequestException $e){
+            return (string) $e->getResponse()->getBody();
+        }
+
         Postback::where(['get_started' => true])
             ->update(['get_started' => false]);
 
         $postback->get_started = true;
         $postback->save();
-
-        $bot = Solid::factory();
-        Solid::pageAccessToken(config('botfb.pageAccessToken'));
-
-        $bot->addGetStartedButton($postback->value);
 
         return response()->json(['status'=>'ok']);
     }

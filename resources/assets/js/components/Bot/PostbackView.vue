@@ -19,16 +19,53 @@
             <a @click.prevent="showEditForm = !showEditForm" href="" class="btn blue">Editar</a>
             <a @click.prevent="remove()" href="" class="btn red">Remover</a>
         </p>
+
+        <message v-for="message in postback.messages" :message-data="message"></message>
+
+        <div class="card light-green">
+            <div class="card-content">
+
+                <form id="formNewMessage" @submit.prevent="newMessage()">
+                    <h5>Nova Mensagem</h5>
+                    <div class="input-filter">
+                        <select class="browser-default" required v-model="dataToSave.type">
+                            <option value="" disabled>Tipo da Mensagem</option>
+                            <optgroup label="Mensagem">
+                                <option value="text">Texto</option>
+                                <option value="file">Arquivo</option>
+                                <option value="audio">Audio</option>
+                                <option value="image">Imagem</option>
+                                <option value="video">Video</option>
+                            </optgroup>
+                        </select>
+                    </div>
+                    <div id="messageField" class="input-field">
+                        <input type="text" required v-model="dataToSave.message">
+                        <label>Mensagem</label>
+                    </div>
+                    <input id="messageSaveBtn" type="submit" value="+" class="btn green">
+                </form>
+
+            </div>
+        </div>
+
     </div>
 </template>
 
 <script>
     import swal from 'sweetalert'
+    import message from './Message';
 
     export default {
+        components: {
+            'message': message
+        },
         data: function () {
           return {
-              showEditForm: false
+              showEditForm: false,
+              dataToSave: {
+                  type: ''
+              }
           }
         },
         methods: {
@@ -82,7 +119,7 @@
                         buttons: [ "Cancelar", "Definir"],
                     }).then((confirmed) => {
                     if (confirmed) {
-                        this.$store.dispatch('addGetStarted', this.$route.params.id).then(() => {
+                        this.$store.dispatch('addGetStarted', this.$route.params.id).then((res) => {
                             swal("Concluído", "Botão começar agora corresponde a este postback.", "success")
                             this.$store.dispatch('getPostback', this.$route.params.id)
                         })
@@ -104,11 +141,51 @@
                         buttons: [ "Cancelar", "Desativar"],
                     }).then((confirmed) => {
                     if (confirmed) {
-                        this.$store.dispatch('removeGetStarted').then(() => {
-                            swal("Concluído", "Botão começar não corresponde mais a este postback.", "success")
+                        this.$store.dispatch('removeGetStarted').then((res) => {
+                            let err = res.data.error || null;
+                            if (err) {
+                                let message = 'Algo deu errado'
+                                if (err.code === 100) {
+                                    message = "Você precisa manter o botão começar. ele é necessário para a exibição do menu. Remova o menu primeiro."
+                                }
+                                swal ('Erro', message, 'error')
+                            } else {
+                                swal("Concluído", "Botão começar não corresponde mais a este postback.", "success")
+                            }
+
                         })
                     }
                 });
+            },
+            newMessage() {
+                let $ = window.jQuery;
+                $('#messageSaveBtn').val('Aguarde...').attr('disabled', true)
+
+                let data = {
+                    type: this.dataToSave.type || 'test',
+                    message: this.dataToSave.message,
+                    template: false,
+                    postback_id: this.$route.params.id
+                }
+
+                let messageTypes = [
+                    'text',
+                    'file',
+                    'audio',
+                    'image',
+                    'video',
+                ];
+
+                if (messageTypes.indexOf(data.type) === -1) {
+                    data.template = true
+                }
+
+                this.$store.dispatch('newMessage', data).then(() => {
+                    $('#messageSaveBtn').val('+').attr('disabled', false)
+                    swal('Salvo com sucesso!','O bot já deverá responder com essa mensagem', 'success')
+                    this.dataToSave = {type: 'text'}
+                    this.$store.dispatch('getPostback', this.$route.params.id)
+                })
             }
         },
         computed: {
@@ -124,8 +201,21 @@
 </script>
 
 <style>
-    .swal-button {
-        align-self: center;
+    #messageField {
+        background-color: rgba(255, 255, 255, 0.9);
+        margin-bottom: 20px;
+        padding: 10px;
+        border-radius: 2px;
+    }
+    #messageField input {
+        margin-bottom: 0;
+        border-bottom: none;
+    }
+    #messageField label {
+        left: 10px;
+    }
+    #formNewMessage h5 {
+        color: #fff;
     }
 </style>
 

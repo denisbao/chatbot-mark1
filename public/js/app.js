@@ -1805,6 +1805,123 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Bot/Message.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+    props: ['messageData'],
+    data: function data() {
+        return {
+            currentMessage: null,
+            showEditForm: false
+        };
+    },
+    methods: {
+        update: function update(message) {
+            var _this = this;
+
+            var data = {
+                id: this.message.id,
+                data: {
+                    type: this.message.type,
+                    message: message
+                }
+            };
+
+            this.$store.dispatch('updateMessage', data).then(function () {
+                swal('Salvo com sucesso', 'O bot já está respondendo com essa atualização', 'success');
+                _this.message.message = message;
+                _this.showEditForm = false;
+                _this.$store.dispatch('getPostback', _this.$route.params.id);
+            });
+        },
+        remove: function remove() {
+            var _this2 = this;
+
+            swal(_defineProperty({
+                title: "Tem certeza?",
+                text: "Você não poderá desfazer esta ação.",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#DD6B55",
+                closeOnConfirm: false,
+                closeOnCancel: false,
+                icon: "warning",
+                buttons: true
+            }, 'buttons', ["Cancelar", "Remover"])).then(function (confirmed) {
+                if (confirmed) {
+                    _this2.$store.dispatch('removeMessage', _this2.message.id).then(function () {
+                        swal("Removido!", "Removido com sucesso.", "success");
+                        _this2.$store.dispatch('getPostback', _this2.$route.params.id);
+                    });
+                }
+            });
+        }
+    },
+    computed: {
+        message: function message() {
+            return this.messageData;
+        }
+    }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Bot/Postback.vue":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -1836,6 +1953,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     data: function data() {
@@ -1872,6 +1990,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert__ = __webpack_require__("./node_modules/sweetalert/dist/sweetalert.min.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_sweetalert___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_sweetalert__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Message__ = __webpack_require__("./resources/assets/js/components/Bot/Message.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__Message___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__Message__);
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 //
@@ -1898,13 +2018,50 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
 
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+    components: {
+        'message': __WEBPACK_IMPORTED_MODULE_1__Message___default.a
+    },
     data: function data() {
         return {
-            showEditForm: false
+            showEditForm: false,
+            dataToSave: {
+                type: ''
+            }
         };
     },
     methods: {
@@ -1959,7 +2116,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 buttons: true
             }, 'buttons', ["Cancelar", "Definir"])).then(function (confirmed) {
                 if (confirmed) {
-                    _this3.$store.dispatch('addGetStarted', _this3.$route.params.id).then(function () {
+                    _this3.$store.dispatch('addGetStarted', _this3.$route.params.id).then(function (res) {
                         __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()("Concluído", "Botão começar agora corresponde a este postback.", "success");
                         _this3.$store.dispatch('getPostback', _this3.$route.params.id);
                     });
@@ -1981,10 +2138,45 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
                 buttons: true
             }, 'buttons', ["Cancelar", "Desativar"])).then(function (confirmed) {
                 if (confirmed) {
-                    _this4.$store.dispatch('removeGetStarted').then(function () {
-                        __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()("Concluído", "Botão começar não corresponde mais a este postback.", "success");
+                    _this4.$store.dispatch('removeGetStarted').then(function (res) {
+                        var err = res.data.error || null;
+                        if (err) {
+                            var _message = 'Algo deu errado';
+                            if (err.code === 100) {
+                                _message = "Você precisa manter o botão começar. ele é necessário para a exibição do menu. Remova o menu primeiro.";
+                            }
+                            __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()('Erro', _message, 'error');
+                        } else {
+                            __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()("Concluído", "Botão começar não corresponde mais a este postback.", "success");
+                        }
                     });
                 }
+            });
+        },
+        newMessage: function newMessage() {
+            var _this5 = this;
+
+            var $ = window.jQuery;
+            $('#messageSaveBtn').val('Aguarde...').attr('disabled', true);
+
+            var data = {
+                type: this.dataToSave.type || 'test',
+                message: this.dataToSave.message,
+                template: false,
+                postback_id: this.$route.params.id
+            };
+
+            var messageTypes = ['text', 'file', 'audio', 'image', 'video'];
+
+            if (messageTypes.indexOf(data.type) === -1) {
+                data.template = true;
+            }
+
+            this.$store.dispatch('newMessage', data).then(function () {
+                $('#messageSaveBtn').val('+').attr('disabled', false);
+                __WEBPACK_IMPORTED_MODULE_0_sweetalert___default()('Salvo com sucesso!', 'O bot já deverá responder com essa mensagem', 'success');
+                _this5.dataToSave = { type: 'text' };
+                _this5.$store.dispatch('getPostback', _this5.$route.params.id);
             });
         }
     },
@@ -2023,7 +2215,7 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 
 // module
-exports.push([module.i, "\n.swal-button {\n    -ms-flex-item-align: center;\n        align-self: center;\n}\n", ""]);
+exports.push([module.i, "\n#messageField {\n    background-color: rgba(255, 255, 255, 0.9);\n    margin-bottom: 20px;\n    padding: 10px;\n    border-radius: 2px;\n}\n#messageField input {\n    margin-bottom: 0;\n    border-bottom: none;\n}\n#messageField label {\n    left: 10px;\n}\n#formNewMessage h5 {\n    color: #fff;\n}\n", ""]);
 
 // exports
 
@@ -45325,7 +45517,15 @@ var render = function() {
               "waves-effect btn-large waves-light light-green btn-postback",
             attrs: { to: { path: "/postback/" + postback.id } }
           },
-          [_vm._v("\n            " + _vm._s(postback.value) + "\n        ")]
+          [
+            postback.get_started
+              ? _c("i", { staticClass: "material-icons" }, [_vm._v("done_all")])
+              : _vm._e(),
+            _vm._v(" " + _vm._s(postback.value) + " "),
+            postback.get_started
+              ? _c("small", [_vm._v("(Botão começar)")])
+              : _vm._e()
+          ]
         )
       })
     ),
@@ -45568,137 +45768,461 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("h3", [
-      _c("small", [_vm._v("Postback:")]),
-      _vm._v(" " + _vm._s(_vm.postback.value) + " ")
-    ]),
-    _vm._v(" "),
-    _vm.showEditForm
-      ? _c(
-          "form",
-          {
-            attrs: { id: "form-new-postback" },
-            on: {
-              submit: function($event) {
-                $event.preventDefault()
-                _vm.save()
+  return _c(
+    "div",
+    [
+      _c("h3", [
+        _c("small", [_vm._v("Postback:")]),
+        _vm._v(" " + _vm._s(_vm.postback.value) + " ")
+      ]),
+      _vm._v(" "),
+      _vm.showEditForm
+        ? _c(
+            "form",
+            {
+              attrs: { id: "form-new-postback" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.save()
+                }
               }
-            }
-          },
-          [
-            _c("div", { staticClass: "input-field" }, [
-              _c("input", {
-                directives: [
-                  {
-                    name: "model",
-                    rawName: "v-model",
-                    value: _vm.postback.value,
-                    expression: "postback.value"
-                  }
-                ],
-                attrs: { id: "value_to_postback", type: "text", required: "" },
-                domProps: { value: _vm.postback.value },
-                on: {
-                  input: function($event) {
-                    if ($event.target.composing) {
-                      return
+            },
+            [
+              _c("div", { staticClass: "input-field" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.postback.value,
+                      expression: "postback.value"
                     }
-                    _vm.$set(_vm.postback, "value", $event.target.value)
+                  ],
+                  attrs: {
+                    id: "value_to_postback",
+                    type: "text",
+                    required: ""
+                  },
+                  domProps: { value: _vm.postback.value },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.$set(_vm.postback, "value", $event.target.value)
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "label",
+                  {
+                    staticClass: "active",
+                    attrs: { for: "value_to_postback" }
+                  },
+                  [_vm._v("Identificação do postback")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  staticClass: "btn",
+                  attrs: { type: "submit", value: "Atualizar" }
+                })
+              ])
+            ]
+          )
+        : _vm._e(),
+      _vm._v(" "),
+      _c(
+        "p",
+        [
+          _c(
+            "router-link",
+            { staticClass: "btn", attrs: { to: { path: "/" } } },
+            [_vm._v("Voltar")]
+          ),
+          _vm._v(" "),
+          !_vm.postback.get_started
+            ? _c(
+                "a",
+                {
+                  staticClass: "btn green",
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.addGetStartedButton()
+                    }
+                  }
+                },
+                [_vm._v("Ligar botão começar")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _vm.postback.get_started
+            ? _c(
+                "a",
+                {
+                  staticClass: "btn green",
+                  attrs: { href: "" },
+                  on: {
+                    click: function($event) {
+                      $event.preventDefault()
+                      _vm.removeGetStartedButton()
+                    }
+                  }
+                },
+                [_vm._v("Desligar botão começar")]
+              )
+            : _vm._e(),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn blue",
+              attrs: { href: "" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.showEditForm = !_vm.showEditForm
+                }
+              }
+            },
+            [_vm._v("Editar")]
+          ),
+          _vm._v(" "),
+          _c(
+            "a",
+            {
+              staticClass: "btn red",
+              attrs: { href: "" },
+              on: {
+                click: function($event) {
+                  $event.preventDefault()
+                  _vm.remove()
+                }
+              }
+            },
+            [_vm._v("Remover")]
+          )
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm._l(_vm.postback.messages, function(message) {
+        return _c("message", { attrs: { "message-data": message } })
+      }),
+      _vm._v(" "),
+      _c("div", { staticClass: "card light-green" }, [
+        _c("div", { staticClass: "card-content" }, [
+          _c(
+            "form",
+            {
+              attrs: { id: "formNewMessage" },
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.newMessage()
+                }
+              }
+            },
+            [
+              _c("h5", [_vm._v("Nova Mensagem")]),
+              _vm._v(" "),
+              _c("div", { staticClass: "input-filter" }, [
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataToSave.type,
+                        expression: "dataToSave.type"
+                      }
+                    ],
+                    staticClass: "browser-default",
+                    attrs: { required: "" },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.$set(
+                          _vm.dataToSave,
+                          "type",
+                          $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        )
+                      }
+                    }
+                  },
+                  [
+                    _c("option", { attrs: { value: "", disabled: "" } }, [
+                      _vm._v("Tipo da Mensagem")
+                    ]),
+                    _vm._v(" "),
+                    _vm._m(0)
+                  ]
+                )
+              ]),
+              _vm._v(" "),
+              _c(
+                "div",
+                { staticClass: "input-field", attrs: { id: "messageField" } },
+                [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.dataToSave.message,
+                        expression: "dataToSave.message"
+                      }
+                    ],
+                    attrs: { type: "text", required: "" },
+                    domProps: { value: _vm.dataToSave.message },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.$set(_vm.dataToSave, "message", $event.target.value)
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("label", [_vm._v("Mensagem")])
+                ]
+              ),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "btn green",
+                attrs: { id: "messageSaveBtn", type: "submit", value: "+" }
+              })
+            ]
+          )
+        ])
+      ])
+    ],
+    2
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("optgroup", { attrs: { label: "Mensagem" } }, [
+      _c("option", { attrs: { value: "text" } }, [_vm._v("Texto")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "file" } }, [_vm._v("Arquivo")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "audio" } }, [_vm._v("Audio")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "image" } }, [_vm._v("Imagem")]),
+      _vm._v(" "),
+      _c("option", { attrs: { value: "video" } }, [_vm._v("Video")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5982f46b", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e3efb090\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Bot/Message.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { staticClass: "card" }, [
+    _vm.message.type === "text"
+      ? _c("span", { staticClass: "teal lighten-2 white-text badge" }, [
+          _vm._v(_vm._s(_vm.message.type))
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.message.type === "audio"
+      ? _c("span", { staticClass: "blue lighten-1 white-text badge" }, [
+          _vm._v(_vm._s(_vm.message.type))
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.message.type === "image"
+      ? _c("span", { staticClass: "orange lighten-1 white-text badge" }, [
+          _vm._v(_vm._s(_vm.message.type))
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.message.type === "file"
+      ? _c("span", { staticClass: "deep-purple lighten-2 white-text badge" }, [
+          _vm._v(_vm._s(_vm.message.type))
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _vm.message.type === "video"
+      ? _c("span", { staticClass: "red lighten-2 white-text badge" }, [
+          _vm._v(_vm._s(_vm.message.type))
+        ])
+      : _vm._e(),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-content" }, [
+      _c(
+        "blockquote",
+        [
+          _c("stron", [_vm._v("Mensagem:")]),
+          _vm._v(" " + _vm._s(_vm.message.message) + "\n        ")
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _vm.message.type === "image"
+        ? _c("img", {
+            staticClass: "responsive-img",
+            attrs: { src: _vm.message.message }
+          })
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.message.type === "audio"
+        ? _c("audio", { attrs: { controls: "" } }, [
+            _c("source", { attrs: { src: _vm.message.message } })
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.message.type === "video"
+        ? _c("div", { staticClass: "video-container" }, [
+            _c(
+              "video",
+              { staticStyle: { "max-width": "100%" }, attrs: { controls: "" } },
+              [_c("source", { attrs: { src: _vm.message.message } })]
+            )
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.message.type === "file"
+        ? _c("blockquote", [
+            _c("a", { attrs: { href: _vm.message.message } }, [
+              _c("i", { staticClass: "material-icons" }, [
+                _vm._v("attach_file")
+              ]),
+              _vm._v(" Arquivo para download")
+            ])
+          ])
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.showEditForm
+        ? _c(
+            "form",
+            {
+              on: {
+                submit: function($event) {
+                  $event.preventDefault()
+                  _vm.update(_vm.currentMessage)
+                }
+              }
+            },
+            [
+              _c("div", { staticClass: "input-field" }, [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.currentMessage,
+                      expression: "currentMessage"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    type: "text",
+                    placeholder: "Mensagem ou URL...",
+                    required: ""
+                  },
+                  domProps: { value: _vm.currentMessage },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.currentMessage = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c("label", { staticClass: "active" }, [_vm._v("Mensagem")])
+              ]),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "btn",
+                attrs: {
+                  id: "messageSaveBtn",
+                  type: "submit",
+                  value: "atualizar"
+                }
+              }),
+              _vm._v(" "),
+              _c("input", {
+                staticClass: "btn lime",
+                attrs: { type: "button", value: "cancelar" },
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    _vm.showEditForm = !_vm.showEditForm
                   }
                 }
               }),
               _vm._v(" "),
-              _c(
-                "label",
-                { staticClass: "active", attrs: { for: "value_to_postback" } },
-                [_vm._v("Identificação do postback")]
-              ),
-              _vm._v(" "),
-              _c("input", {
-                staticClass: "btn",
-                attrs: { type: "submit", value: "Atualizar" }
-              })
-            ])
-          ]
-        )
-      : _vm._e(),
+              _c("hr")
+            ]
+          )
+        : _vm._e()
+    ]),
     _vm._v(" "),
-    _c(
-      "p",
-      [
-        _c(
-          "router-link",
-          { staticClass: "btn", attrs: { to: { path: "/" } } },
-          [_vm._v("Voltar")]
-        ),
-        _vm._v(" "),
-        !_vm.postback.get_started
-          ? _c(
-              "a",
-              {
-                staticClass: "btn green",
-                attrs: { href: "" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.addGetStartedButton()
-                  }
-                }
-              },
-              [_vm._v("Ligar botão começar")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _vm.postback.get_started
-          ? _c(
-              "a",
-              {
-                staticClass: "btn green",
-                attrs: { href: "" },
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    _vm.removeGetStartedButton()
-                  }
-                }
-              },
-              [_vm._v("Desligar botão começar")]
-            )
-          : _vm._e(),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn blue",
-            attrs: { href: "" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.showEditForm = !_vm.showEditForm
-              }
+    _c("div", { staticClass: "card-action" }, [
+      _c(
+        "a",
+        {
+          attrs: { href: "" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.showEditForm = !_vm.showEditForm
+              _vm.currentMessage = _vm.message.message
             }
-          },
-          [_vm._v("Editar")]
-        ),
-        _vm._v(" "),
-        _c(
-          "a",
-          {
-            staticClass: "btn red",
-            attrs: { href: "" },
-            on: {
-              click: function($event) {
-                $event.preventDefault()
-                _vm.remove()
-              }
+          }
+        },
+        [_vm._v("Editar")]
+      ),
+      _vm._v(" "),
+      _c(
+        "a",
+        {
+          attrs: { href: "" },
+          on: {
+            click: function($event) {
+              $event.preventDefault()
+              _vm.remove()
             }
-          },
-          [_vm._v("Remover")]
-        )
-      ],
-      1
-    )
+          }
+        },
+        [_vm._v("Remover")]
+      )
+    ])
   ])
 }
 var staticRenderFns = []
@@ -45707,7 +46231,7 @@ module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
   module.hot.accept()
   if (module.hot.data) {
-    require("vue-hot-reload-api")      .rerender("data-v-5982f46b", module.exports)
+    require("vue-hot-reload-api")      .rerender("data-v-e3efb090", module.exports)
   }
 }
 
@@ -60838,6 +61362,54 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/Bot/Message.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\",[\"transform-runtime\",{\"polyfill\":false,\"helpers\":false}]]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0!./resources/assets/js/components/Bot/Message.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-e3efb090\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0!./resources/assets/js/components/Bot/Message.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/Bot/Message.vue"
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-e3efb090", Component.options)
+  } else {
+    hotAPI.reload("data-v-e3efb090", Component.options)
+  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/components/Bot/Postback.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -60984,11 +61556,56 @@ $(function () {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__modules_postbacks__ = __webpack_require__("./resources/assets/js/states/modules/postbacks.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__modules_messages__ = __webpack_require__("./resources/assets/js/states/modules/messages.js");
+
 
 
 /* harmony default export */ __webpack_exports__["a"] = ({
     modules: {
-        postback: __WEBPACK_IMPORTED_MODULE_0__modules_postbacks__["a" /* default */]
+        postback: __WEBPACK_IMPORTED_MODULE_0__modules_postbacks__["a" /* default */],
+        message: __WEBPACK_IMPORTED_MODULE_1__modules_messages__["a" /* default */]
+    }
+});
+
+/***/ }),
+
+/***/ "./resources/assets/js/states/modules/messages.js":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony default export */ __webpack_exports__["a"] = ({
+    state: {
+        listMessages: { data: [] },
+        message: {}
+    },
+    mutations: {
+        updateMessageList: function updateMessageList(state, data) {
+            state.listMessages = data;
+        },
+        updateMessage: function updateMessage(state, data) {
+            state.message = data;
+        }
+    },
+    actions: {
+        getMessages: function getMessages(context) {
+            return window.axios.get('api/v1/messages').then(function (response) {
+                context.commit('updateMessageList', response.data);
+            });
+        },
+        getMessage: function getMessage(context, id) {
+            return window.axios.get('api/v1/messages/' + id).then(function (response) {
+                context.commit('updateMessage', response.data);
+            });
+        },
+        newMessage: function newMessage(context, data) {
+            return window.axios.post('api/v1/messages', data);
+        },
+        updateMessage: function updateMessage(context, data) {
+            return window.axios.put('api/v1/messages/' + data.id, data.data);
+        },
+        removeMessage: function removeMessage(context, id) {
+            return window.axios.delete('api/v1/messages/' + id);
+        }
     }
 });
 

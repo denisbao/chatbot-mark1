@@ -5,10 +5,13 @@
         <span v-if="message.type === 'image'"class="orange lighten-1 white-text badge">{{ message.type }}</span>
         <span v-if="message.type === 'file'"class="deep-purple lighten-2 white-text badge">{{ message.type }}</span>
         <span v-if="message.type === 'video'" class="red lighten-2 white-text badge">{{ message.type }}</span>
+        <span v-if="message.type === 'buttons'" class="blue-grey lighten-1 white-text badge">{{ message.type }}</span>
+        <span v-if="message.type === 'generic'" class="blue-grey lighten-1 white-text badge">{{ message.type }}</span>
+        <span v-if="message.type === 'list'" class="blue-grey lighten-1 white-text badge">{{ message.type }}</span>
 
         <div class="card-content">
             <blockquote>
-                <stron>Mensagem:</stron> {{ message.message }}
+                <strong>Mensagem:</strong> {{ message.message }}
             </blockquote>
 
             <img :src="message.message" v-if="message.type === 'image'" class="responsive-img">
@@ -26,6 +29,13 @@
             <blockquote v-if="message.type === 'file'">
                 <a :href="message.message"><i class="material-icons">attach_file</i> Arquivo para download</a>
             </blockquote>
+
+
+            <buttons v-if="message.type === 'buttons'" :message-data="message"></buttons>
+            <generic v-if="message.type === 'generic'" :message-data="message"></generic>
+            <list v-if="message.type === 'list'" :message-data="message"></list>
+
+
 
             <form @submit.prevent="update(currentMessage)" v-if="showEditForm">
                 <div class="input-field">
@@ -49,10 +59,18 @@
 </template>
 
 <script>
+    import Buttons from './Templates/Buttons'
+    import Generic from './Templates/Generic'
+
     export default {
         props: [
             'messageData'
         ],
+        components: {
+          buttons: Buttons,
+          generic: Generic,
+          list: Generic,
+        },
         data: function () {
             return {
                 currentMessage: null,

@@ -7,16 +7,20 @@ import ProductsList from './components/Products/ProductsList'
 import ProductRemove from './components/Products/ProductRemove'
 import ProductEdit from './components/Products/ProductEdit'
 
+import SuggestionList from './components/Suggestions/SuggestionList'
+
 export default [
     { path: '/', component: Postback, meta: {requiresAuth: true} },
 
     { path: '/login', component: Login, meta: {requiresAuth: false} },
     { path: '/register', component: Register, meta: {requiresAuth: false} },
 
-    { path: '/postback/:id', component: PostbackView, meta: {requiresAuth: false} },
+    { path: '/postback/:id', component: PostbackView, meta: {requiresAuth: true} },
 
-    { path: '/products', component: ProductsList, meta: {requiresAuth: false} },
-    { path: '/product/:id/edit', component: ProductEdit, meta: {requiresAuth: false} },
-    { path: '/product/:id/remove', component: ProductRemove, meta: {requiresAuth: false} },
+    { path: '/products', component: ProductsList, meta: {requiresAuth: true} },
+    { path: '/product/:id/edit', component: ProductEdit, meta: {requiresAuth: true} },
+    { path: '/product/:id/remove', component: ProductRemove, meta: {requiresAuth: true} },
+
+    { path: '/suggestions', component: SuggestionList, meta: {requiresAuth: true} },
 
 ]

@@ -26,8 +26,6 @@ class BotController extends Controller
 
     public function receiveMessage(Request $request)
     {
-        $a = new Resolver;
-
         $sender = new SenderRequest;
         $senderId = $sender->getSenderId();
         $postback = $sender->getPostback();

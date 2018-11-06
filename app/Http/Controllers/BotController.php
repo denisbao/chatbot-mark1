@@ -34,7 +34,7 @@ class BotController extends Controller
         Solid::pageAccessToken(config('botfb.pageAccessToken'));
         Solid::setSender($senderId);
 
-        if($postback === 'sugestion') {
+        if($postback === 'suggestion') {
             (new SendSuggestions)->statusStart($sender, $bot);
             return '';
         }

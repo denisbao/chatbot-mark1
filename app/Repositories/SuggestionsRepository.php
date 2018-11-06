@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Redis;
 
 class SuggestionsRepository
 {
-    public function statusStard($senderId)
+    public function statusStart($senderId)
     {
         Redis::set('suggestion::start::' . $senderId, 'started');
     }

@@ -2555,7 +2555,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     data: function data() {
         return {
             locale: 'default',
-            composer_input_disabled: true // ATIVA - DESATIVA ENTRADA DE TEXTO NO CHAT
+            composer_input_disabled: false // ATIVA - DESATIVA ENTRADA DE TEXTO NO CHAT
         };
     },
     methods: {
@@ -46921,7 +46921,7 @@ var render = function() {
                   _vm._v(
                     "Campo de mensagem: " +
                       _vm._s(
-                        menu.composer_input_disabled ? "ativado" : "desativado"
+                        menu.composer_input_disabled ? "desativado" : "ativado"
                       )
                   )
                 ])
@@ -47030,7 +47030,7 @@ var render = function() {
                   }
                 }),
                 _vm._v(" "),
-                _c("span", [_vm._v("Exibir compo de mensagem")])
+                _c("span", [_vm._v("Desabilitar campo de mensagem")])
               ])
             ]
           ),

@@ -8,7 +8,7 @@
             v-for="menu in menus.data"
             class="col s12 waves-effect waves-light btn-large light-green" style="margin-bottom: 20px;"
             :to="{path: 'menu/' + menu.id}">
-                {{ menu.locale }} <small>Campo de mensagem: {{ menu.composer_input_disabled ? 'ativado' : 'desativado' }}</small>
+                {{ menu.locale }} <small>Campo de mensagem: {{ menu.composer_input_disabled ? 'desativado' : 'ativado' }}</small>
 
             </router-link>
         </div>
@@ -35,7 +35,7 @@
                     <!--<label for="composer_input_disabled">Exibir compo de mensagem?</label>-->
                     <label>
                         <input id="composer_input_disabled" class="filled-in" type="checkbox" v-model="composer_input_disabled" checked="checked">
-                        <span>Exibir compo de mensagem</span>
+                        <span>Desabilitar campo de mensagem</span>
                     </label>
                 </div>
                 <div class="input-group col s12">
@@ -54,7 +54,7 @@
         data: function () {
             return {
                 locale: 'default',
-                composer_input_disabled: true // ATIVA - DESATIVA ENTRADA DE TEXTO NO CHAT
+                composer_input_disabled: false // ATIVA - DESATIVA ENTRADA DE TEXTO NO CHAT
             }
         },
         methods: {

@@ -14,3 +14,11 @@
 @import '~materialize-css/sass/materialize';
 
 @import './custom';
+
+
+.preloader-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 75px;
+}

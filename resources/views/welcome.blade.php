@@ -44,8 +44,8 @@
             <div class="nav-wrapper container-fluid grey darken-4">
                 <div class="row">
                     <div class="col s12">
-                        <a href="#/" class="brand-logo"><i class="material-icons">chat</i>Chatbot</a>
-                        <ul class="right hide-on-med-and-down">
+                        <a href="#/" class="brand-logo center"><i class="material-icons">chat</i>Chatbot</a>
+                        <ul class="left">
                             <li>
                                 <a data-target="slide-out" class="menu-btn sidenav-trigger show-on-large">
                                     <i class="material-icons">menu</i>
@@ -112,26 +112,53 @@
                     <img src="https://s.gravatar.com/avatar/06084bf7d041305f6cb68833c5757752?s=80" alt="" class="circle">
                 </a>
                 <a><span class="white-text name">Denis Bao Motta</span></a>
-                <a href="https://gitbub.com/denisbao"><span class="white-text email">@denis</span></a>
+                <a href="https://gitbub.com/denisbao"><span class="white-text email">denis.tpd@gmail.com</span></a>
             </div>
         </li>
+
+        <li><a href="" class="subheader">Bot Manager</a></li>
+        <li><a href="#/" class="waves-effect">Postbacks</a></li>
+        <li><a href="#/menus" class="waves-effect">Menus</a></li>
+
+        <li><a href="" class="subheader">Conteúdos</a></li>
+        <li><a href="#/products" class="waves-effect">Produtos</a></li>
+        <li><a href="#/suggestions" class="waves-effect">Sugestões</a></li>
+
     </ul>
     {{--FIM MENU--}}
 
 
 
-    <div id="app"></div>
+    <div id="app">
 
-    <footer class="footer">
-        <div class="copyright">
-            <div class="container">
-                &copy {{ date('Y') }} Copyright | {{ config('app.name', 'Laravel') }}
-                <span class="hide-on-small-only">
-                    | All rights reserved.
-                </span>
+        {{--PRELOADER--}}
+        <div class="preloader-container">
+            <div class="preloader-wrapper big active">
+                <div class="spinner-layer spinner-blue-only">
+                    <div class="circle-clipper left">
+                        <div class="circle"></div>
+                    </div><div class="gap-patch">
+                        <div class="circle"></div>
+                    </div><div class="circle-clipper right">
+                        <div class="circle"></div>
+                    </div>
+                </div>
             </div>
         </div>
-    </footer>
+        {{--PRELOADER END--}}
+
+    </div>
+
+    {{--<footer class="footer">--}}
+        {{--<div class="copyright">--}}
+            {{--<div class="container">--}}
+                {{--&copy {{ date('Y') }} Copyright | {{ config('app.name', 'Laravel') }}--}}
+                {{--<span class="hide-on-small-only">--}}
+                    {{--| All rights reserved.--}}
+                {{--</span>--}}
+            {{--</div>--}}
+        {{--</div>--}}
+    {{--</footer>--}}
 
     <script src="{{ mix('js/bootstrap.js') }}"></script>
     <script src="{{ mix('js/app.js') }}"></script>

@@ -9,6 +9,11 @@ import ProductEdit from './components/Products/ProductEdit'
 
 import SuggestionList from './components/Suggestions/SuggestionList'
 
+import Menus from './components/Menus/Menu'
+import MenuView from './components/Menus/MenuView'
+
+import NotFoundPage from './components/NotFoundPage'
+
 export default [
     { path: '/', component: Postback, meta: {requiresAuth: true} },
 
@@ -21,6 +26,15 @@ export default [
     { path: '/product/:id/edit', component: ProductEdit, meta: {requiresAuth: true} },
     { path: '/product/:id/remove', component: ProductRemove, meta: {requiresAuth: true} },
 
+    { path: '/menus', component: Menus, meta: {requiresAuth: true} },
+    { path: '/menu/:id', component: MenuView, meta: {requiresAuth: true} },
+
     { path: '/suggestions', component: SuggestionList, meta: {requiresAuth: true} },
+
+
+
+
+    { path: '*', component: NotFoundPage, meta: {requiresAuth: false} },
+
 
 ]

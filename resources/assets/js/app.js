@@ -6,6 +6,7 @@ import VueRouter from 'vue-router'
 import Vuex from 'vuex'
 import VuexStore from './states'
 import routes from './routes'
+import Loader from './components/Loader'
 
 Vue.use(Vuex)
 Vue.use(VueRouter)
@@ -33,7 +34,10 @@ const store = new Vuex.Store(VuexStore)
 
 const app = new Vue({
     el: '#app',
-    template: '<div><router-view class="container"></router-view></div>',
+    components: {
+        loader: Loader
+    },
+    template: '<div><router-view class="container"></router-view><loader></loader></div>',
     router,
     store
 });

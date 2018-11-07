@@ -40,7 +40,7 @@
                             <optgroup label="Templates">
                                 <option value="buttons">Botões</option>
                                 <option value="generic">Slider</option>
-                                <option value="list">Lista</option>
+                                <option value="generic">Lista</option>
 
                             </optgroup>
                         </select>

@@ -47533,7 +47533,7 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("option", { attrs: { value: "generic" } }, [_vm._v("Slider")]),
       _vm._v(" "),
-      _c("option", { attrs: { value: "list" } }, [_vm._v("Lista")])
+      _c("option", { attrs: { value: "generic" } }, [_vm._v("Lista")])
     ])
   }
 ]

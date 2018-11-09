@@ -56,7 +56,7 @@ class BotController extends Controller
 
 
 
-        $d = FindEntity::array_keys_multi($entities);
+        $d = FindEntity::findEntityKeys($entities);
         $enti = $d[1];
 
 

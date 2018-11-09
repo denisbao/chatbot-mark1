@@ -3,7 +3,7 @@ namespace App\BotResources;
 
 class FindEntity
 {
-  public static function array_keys_multi(array $array)
+  public static function findEntityKeys($array)
   {
       $keys = array();
 
@@ -11,7 +11,7 @@ class FindEntity
           $keys[] = $key;
 
           if (is_array($value)) {
-              $keys = array_merge($keys, array_keys_multi($value));
+              $keys = array_merge($keys, findEntityKeys($value));
           }
       }
       return $keys;

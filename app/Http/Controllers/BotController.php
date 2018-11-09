@@ -46,13 +46,12 @@ class BotController extends Controller
         //\Log::info("#####  -  PRINT INPUT = ".$data['entities']);
         //\Log::info("#####  -  PRINT CONFIANCE = ".$data['confidence']);
 
-        $collection = new JsonCollect($request);
+        $event = file_get_contents("php://input");
+        $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
 
-        \Log::info("#####  -  PRINT 3 = " . $collection->getentities());
-        \Log::info("#####  -  PRINT 4 = " . $request->entry[0]->messaging[0]->message['entities'][0]);
+        $this->event = $event['entry'][0]['messaging'][0]['message'][0];
 
-        \Log::info("#####  -  PRINT 1 = " + $collection->getentities());
-        \Log::info("#####  -  PRINT 2 = " + $request->entry[0]->messaging[0]->message['entities'][0]);
+        \Log::info("#####  -  PRINT CONFIANCE = ".$event['nlp']['entities']);
 
 
 
@@ -70,7 +69,6 @@ class BotController extends Controller
         Solid::pageAccessToken(config('botfb.pageAccessToken'));
         Solid::setSender($senderId);
 
-        print_r("#####  -  PRINT POSTBACK = ".$postback);
 
         if($postback === 'suggestion') {
             (new SendSuggestions)->statusStart($sender, $bot);

@@ -61,38 +61,6 @@ class BotController extends Controller
 
         \Log::info("#####  -  ARRAY DE KEYS = ".$keys);
 
-        // \Log::info("#####  -  ARRAY DE KEYS = ".$arryEntities->search($keys));
-
-
-
-
-        // $array = implode("",$keys);
-
-
-
-
-
-        // $d = new FindEntity;
-        // $d->findEntityKeys($entities);
-        // $enti = $d[1];
-
-
-        // foreach($entities as $row) {
-        //     foreach($row as $key => $val) {
-        //        $saida = $key;
-        //     }
-        // }
-
-
-
-
-
-
-
-
-
-
-
 
 
         $sender = new SenderRequest;
@@ -117,9 +85,12 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-            $bot->message('text', 'A entidade é .... ' . $keys);
-            $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
-            $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
+            if ($keys === "saudacao"){
+              $bot->message('text', 'Loco de especial! Qual é a boa?');
+            }else {
+              $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
+              $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
+            }
             return '';
 
         }

@@ -26,6 +26,9 @@ class BotController extends Controller
 
     public function receiveMessage(Request $request)
     {
+
+        print_r("#####  -  PRINT REQUEST = ".$request);
+
         $sender = new SenderRequest;
         $senderId = $sender->getSenderId();
         $postback = $sender->getPostback();
@@ -33,6 +36,8 @@ class BotController extends Controller
         $bot = Solid::factory();
         Solid::pageAccessToken(config('botfb.pageAccessToken'));
         Solid::setSender($senderId);
+
+        print_r("#####  -  PRINT POSTBACK = ".$postback);
 
         if($postback === 'suggestion') {
             (new SendSuggestions)->statusStart($sender, $bot);

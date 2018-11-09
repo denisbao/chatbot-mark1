@@ -11,6 +11,7 @@ use CodeBot\SenderRequest;
 use CodeBot\WebHook;
 use Illuminate\Http\Request;
 use Jshannon63\JsonCollect\JsonCollect;
+use App\Helper;
 
 class BotController extends Controller
 {
@@ -25,20 +26,6 @@ class BotController extends Controller
         return $subscribe;
     }
 
-    public function array_keys_multi(array $array)
-    {
-        $keys = array();
-
-        foreach ($array as $key => $value) {
-            $keys[] = $key;
-
-            if (is_array($value)) {
-                $keys = array_merge($keys, array_keys_multi($value));
-            }
-        }
-
-        return $keys;
-    }
 
     public function receiveMessage(Request $request)
     {
@@ -68,7 +55,8 @@ class BotController extends Controller
 
 
 
-        $d = array_keys_multi($entities);
+        $d = Helper::array_keys_multi($entities);
+        $enti = $d[1];
 
 
         // foreach($entities as $row) {
@@ -79,6 +67,7 @@ class BotController extends Controller
 
 
         \Log::info("#####  -  ARRAY DE KEYS = ".$d);
+        \Log::info("#####  -  ARRAY DE KEYS = ".$event);
 
 
 
@@ -110,7 +99,7 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-
+            $bot->message('text', 'A entidade é .... ' . $enti);
             $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
             $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             return '';

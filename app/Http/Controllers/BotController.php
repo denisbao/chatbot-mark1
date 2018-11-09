@@ -30,7 +30,7 @@ class BotController extends Controller
 
         //\Log::info("#####  -  PRINT REQUEST = ".$request);
 
-        $input = $request->input('nlp');
+        $input = $request->input('entry.messaging.message.nlp.entities');
 
         \Log::info("#####  -  PRINT INPUT = ".$input);
 

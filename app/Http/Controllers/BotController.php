@@ -56,7 +56,7 @@ class BotController extends Controller
         $arryEntities = collect($entities);
 
         $keys = $arryEntities->keys()->first();
-        $ae = $keys[0]
+        $ae = $keys[0];
 
         // $array = implode("",$keys);
 

@@ -32,7 +32,9 @@ class BotController extends Controller
 
         //$input = $request->input('entry.messaging.message.nlp.entities');
 
-        $input = $request->all();
+        // $input = $request->all();
+
+        $input = json_decode($request, true);
 
 
         $input2 = $input['entry'];

@@ -49,7 +49,7 @@ class BotController extends Controller
         $event = file_get_contents("php://input");
         $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
 
-        $test = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
+        $test = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'][0];
 
         \Log::info("#####  -  PRINT CONFIANCE = ".$request);
 

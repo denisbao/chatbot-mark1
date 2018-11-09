@@ -48,24 +48,10 @@ class BotController extends Controller
 
         $event = file_get_contents("php://input");
         $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
-
         $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
 
 
-        function array_keys_multi(array $array)
-        {
-            $keys = array();
 
-            foreach ($array as $key => $value) {
-                $keys[] = $key;
-
-                if (is_array($value)) {
-                    $keys = array_merge($keys, array_keys_multi($value));
-                }
-            }
-
-            return $keys;
-        }
 
         $d = array_keys_multi($entities);
 
@@ -121,5 +107,20 @@ class BotController extends Controller
         }
 
         return '';
+    }
+
+    function array_keys_multi(array $array)
+    {
+        $keys = array();
+
+        foreach ($array as $key => $value) {
+            $keys[] = $key;
+
+            if (is_array($value)) {
+                $keys = array_merge($keys, array_keys_multi($value));
+            }
+        }
+
+        return $keys;
     }
 }

@@ -34,9 +34,11 @@ class BotController extends Controller
 
         // $input = $request->all();
 
-        $data = $request->toArray();
+        // $input = $request->json()->all();
 
-        \Log::info("#####  -  PRINT DATA = ".$data);
+
+
+        \Log::info("#####  -  PRINT DATA = ".$request->input('0.entities'));
 
         //\Log::info("#####  -  PRINT INPUT = ".$data['entities']);
         \Log::info("#####  -  PRINT CONFIANCE = ".$data['confidence']);

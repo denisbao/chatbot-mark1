@@ -51,14 +51,20 @@ class BotController extends Controller
 
         $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
 
-        foreach($entities as $row) {
-            foreach($row as $key => $val) {
-               $saida = $key;
-            }
-        }
 
 
-        \Log::info("#####  -  PRINT CONFIANCE = ".$request);
+
+
+        $b = array_keys($entities);
+
+        // foreach($entities as $row) {
+        //     foreach($row as $key => $val) {
+        //        $saida = $key;
+        //     }
+        // }
+
+
+        \Log::info("#####  -  PRINT CONFIANCE = ".$b);
 
 
 

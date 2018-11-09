@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BotResources\SendSuggestions;
-use App\BotResources\FindEntity;
+// use App\BotResources\FindEntity;
 use App\Postback;
 use App\Repositories\MessagesBuilderRepository;
 use CodeBot\Build\Solid;
@@ -53,14 +53,15 @@ class BotController extends Controller
         $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
         $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
 
+        $arryEntities = collect($entities);
+
+        $keys = $arryEntities->keys();
 
 
 
-        $d = FindEntity::findEntityKeys($entities);
-
-        $d = new FindEntity;
-        $d->findEntityKeys($entities);
-        $enti = $d[1];
+        // $d = new FindEntity;
+        // $d->findEntityKeys($entities);
+        // $enti = $d[1];
 
 
         // foreach($entities as $row) {
@@ -70,8 +71,8 @@ class BotController extends Controller
         // }
 
 
-        \Log::info("#####  -  ARRAY DE KEYS = ".$d);
-        \Log::info("#####  -  ARRAY DE KEYS = ".$event);
+        \Log::info("#####  -  ARRAY DE KEYS = ".$keys);
+
 
 
 
@@ -103,7 +104,7 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-            $bot->message('text', 'A entidade é .... ' . $enti);
+            $bot->message('text', 'A entidade é .... ' . $keys.toString());
             $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
             $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             return '';

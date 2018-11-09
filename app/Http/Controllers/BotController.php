@@ -55,9 +55,10 @@ class BotController extends Controller
 
         $arryEntities = collect($entities);
 
-        $keys = $arryEntities->keys()->first()->toArray();
+        $keys = $arryEntities->keys()->first();
+        $ae = $keys[0]
 
-        $array = implode($keys);
+        // $array = implode("",$keys);
 
 
 
@@ -108,7 +109,7 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-            $bot->message('text', 'A entidade é .... ' . $array);
+            $bot->message('text', 'A entidade é .... ' . $ae);
             $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
             $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             return '';

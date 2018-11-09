@@ -11,7 +11,7 @@ class FindEntity
           $keys[] = $key;
 
           if (is_array($value)) {
-              $keys = array_merge($keys, findEntityKeys($value));
+              $keys = array_merge($keys, $this->findEntityKeys($value));
           }
       }
       return $keys;

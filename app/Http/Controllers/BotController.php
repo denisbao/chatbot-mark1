@@ -10,6 +10,7 @@ use CodeBot\Resources\Resolver;
 use CodeBot\SenderRequest;
 use CodeBot\WebHook;
 use Illuminate\Http\Request;
+use Jshannon63\JsonCollect\JsonCollect;
 
 class BotController extends Controller
 {
@@ -39,11 +40,15 @@ class BotController extends Controller
 
 
 
-        \Log::info("#####  -  PRINT DATA = " . $request->input('0.entities') );
-        \Log::info($request->input('0.entities'));
+        // \Log::info("#####  -  PRINT DATA = " . $request->input('0.entities') );
+        // \Log::info($request->input('0.entities'));
 
         //\Log::info("#####  -  PRINT INPUT = ".$data['entities']);
         //\Log::info("#####  -  PRINT CONFIANCE = ".$data['confidence']);
+
+        $collection = new JsonCollect($request);
+
+        \Log::info("#####  -  PRINT CONFIANCE = " + $collection->getentities();); 
 
 
 

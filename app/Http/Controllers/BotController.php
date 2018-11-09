@@ -29,7 +29,10 @@ class BotController extends Controller
 
         // print_r("#####  -  PRINT REQUEST = ".$request);
         \Log::info("#####  -  PRINT REQUEST = ".$request);
-        \Log::info("#####  -  PRINT MESSAGE = ".$request['entities']);
+
+        $input = $request->input('nlp');
+
+        \Log::info("#####  -  PRINT INPUT = ".$input);
 
 
 
@@ -56,10 +59,6 @@ class BotController extends Controller
             $botResourcesResolver->register(SendSuggestions::class);
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
-            }
-
-            if ($request['entities'] === "saudacao"){
-              $bot->message('text', 'Eu detectei uma saudação. Bom dia!');
             }
 
             $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');

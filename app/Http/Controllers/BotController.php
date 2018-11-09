@@ -32,6 +32,8 @@ class BotController extends Controller
         \Log::info("#####  -  PRINT MESSAGE = ".$request['entities']);
 
 
+
+
         $sender = new SenderRequest;
         $senderId = $sender->getSenderId();
         $postback = $sender->getPostback();
@@ -55,6 +57,11 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
+
+            if ($request['entities'] === "saudacao"){
+              $bot->message('text', 'Eu detectei uma saudação. Bom dia!');
+            }
+
             $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
             $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             return '';

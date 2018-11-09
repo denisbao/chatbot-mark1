@@ -3,7 +3,7 @@ namespace App\BotResources;
 
 class FindEntity
 {
-  public function findEntityKeys($array)
+  public static function findEntityKeys($array)
   {
       $keys = array();
 

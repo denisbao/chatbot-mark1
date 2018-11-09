@@ -48,7 +48,15 @@ class BotController extends Controller
 
         $collection = new JsonCollect($request);
 
-        \Log::info("#####  -  PRINT CONFIANCE = " + $collection->getentities();); 
+        \Log::info("#####  -  PRINT 3 = " . $collection->getentities());
+        \Log::info("#####  -  PRINT 4 = " . $request->entry[0]->messaging[0]->message['entities'][0]);
+
+        \Log::info("#####  -  PRINT 1 = " + $collection->getentities());
+        \Log::info("#####  -  PRINT 2 = " + $request->entry[0]->messaging[0]->message['entities'][0]);
+
+
+
+
 
 
 

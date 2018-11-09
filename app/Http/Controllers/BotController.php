@@ -49,7 +49,14 @@ class BotController extends Controller
         $event = file_get_contents("php://input");
         $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
 
-        $test = $event['entry'][0]['messaging'][0]['message']['text'];
+        $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
+
+        foreach($entities as $row) {
+            foreach($row as $key => $val) {
+               $saida = $key;
+            }
+        }
+
 
         \Log::info("#####  -  PRINT CONFIANCE = ".$request);
 
@@ -83,7 +90,7 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-            $bot->message('text', 'entidade' . $test);
+            $bot->message('text', 'A entidade seria... ' . $saida);
             $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
             $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             return '';

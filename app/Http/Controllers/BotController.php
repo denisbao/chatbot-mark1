@@ -85,10 +85,10 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-            if ($keys === "saudacao"){
+            else if ($keys === "saudacao"){
               $bot->message('text', 'Loco de especial! Qual é a boa?');
             }
-            if ($keys === "teste"){
+            else if ($keys === "teste"){
               $bot->message('text', 'A essa hora? Vai deitá pros pé!');
             }
             else {

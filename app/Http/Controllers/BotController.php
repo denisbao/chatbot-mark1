@@ -25,6 +25,21 @@ class BotController extends Controller
         return $subscribe;
     }
 
+    public function array_keys_multi(array $array)
+    {
+        $keys = array();
+
+        foreach ($array as $key => $value) {
+            $keys[] = $key;
+
+            if (is_array($value)) {
+                $keys = array_merge($keys, array_keys_multi($value));
+            }
+        }
+
+        return $keys;
+    }
+
     public function receiveMessage(Request $request)
     {
 
@@ -95,7 +110,7 @@ class BotController extends Controller
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-          
+
             $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
             $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             return '';
@@ -109,18 +124,5 @@ class BotController extends Controller
         return '';
     }
 
-    function array_keys_multi(array $array)
-    {
-        $keys = array();
 
-        foreach ($array as $key => $value) {
-            $keys[] = $key;
-
-            if (is_array($value)) {
-                $keys = array_merge($keys, array_keys_multi($value));
-            }
-        }
-
-        return $keys;
-    }
 }

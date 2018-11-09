@@ -87,7 +87,11 @@ class BotController extends Controller
             }
             if ($keys === "saudacao"){
               $bot->message('text', 'Loco de especial! Qual é a boa?');
-            }else {
+            }
+            if ($keys === "teste"){
+              $bot->message('text', 'A essa hora? Vai deitá pros pé!');
+            }
+            else {
               $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
               $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             }

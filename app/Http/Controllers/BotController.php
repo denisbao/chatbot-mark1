@@ -34,7 +34,8 @@ class BotController extends Controller
 
         $input = $request->all();
 
-        var_dump($input);
+        \Log::info(var_dump($input));
+
 
         // $input2 = $input['entry']['messaging']['message']['nlp']['entities'];
         //

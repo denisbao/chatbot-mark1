@@ -52,10 +52,23 @@ class BotController extends Controller
         $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
 
 
+        function array_keys_multi(array $array)
+        {
+            $keys = array();
 
+            foreach ($array as $key => $value) {
+                $keys[] = $key;
 
+                if (is_array($value)) {
+                    $keys = array_merge($keys, array_keys_multi($value));
+                }
+            }
 
-        $b = array_keys($entities);
+            return $keys;
+        }
+
+        $d = array_keys_multi($entities);
+
 
         // foreach($entities as $row) {
         //     foreach($row as $key => $val) {
@@ -64,7 +77,7 @@ class BotController extends Controller
         // }
 
 
-        \Log::info("#####  -  PRINT CONFIANCE = ".$b);
+        \Log::info("#####  -  ARRAY DE KEYS = ".$d);
 
 
 

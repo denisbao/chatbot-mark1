@@ -1,7 +1,7 @@
 <?php
-namespace App\Http;
+namespace App\BotResources;
 
-class Helper
+class FindEntity
 {
   public static function array_keys_multi(array $array)
   {
@@ -14,7 +14,6 @@ class Helper
               $keys = array_merge($keys, array_keys_multi($value));
           }
       }
-
       return $keys;
   }
 }

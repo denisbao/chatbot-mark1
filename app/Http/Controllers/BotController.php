@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\BotResources\SendSuggestions;
+use App\BotResources\FindEntity;
 use App\Postback;
 use App\Repositories\MessagesBuilderRepository;
 use CodeBot\Build\Solid;
@@ -11,7 +12,7 @@ use CodeBot\SenderRequest;
 use CodeBot\WebHook;
 use Illuminate\Http\Request;
 use Jshannon63\JsonCollect\JsonCollect;
-use Helper;
+
 
 class BotController extends Controller
 {
@@ -55,7 +56,7 @@ class BotController extends Controller
 
 
 
-        $d = Helper::array_keys_multi($entities);
+        $d = FindEntity::array_keys_multi($entities);
         $enti = $d[1];
 
 

@@ -11,7 +11,7 @@ use CodeBot\SenderRequest;
 use CodeBot\WebHook;
 use Illuminate\Http\Request;
 use Jshannon63\JsonCollect\JsonCollect;
-use App\Helper;
+use Helper;
 
 class BotController extends Controller
 {

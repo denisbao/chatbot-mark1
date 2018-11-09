@@ -34,11 +34,8 @@ class BotController extends Controller
 
         // $input = $request->all();
 
-        $input = json_decode($request, true);
-
-
-
-        \Log::info("#####  -  PRINT INPUT = ".$input->{'entry'}->{'messaging'});
+        $data = $request->toArray();
+        \Log::info("#####  -  PRINT INPUT = ".$data['entities']);
 
 
 

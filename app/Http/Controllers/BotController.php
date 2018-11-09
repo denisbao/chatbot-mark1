@@ -29,7 +29,7 @@ class BotController extends Controller
 
         // print_r("#####  -  PRINT REQUEST = ".$request);
         \Log::info("#####  -  PRINT REQUEST = ".$request);
-        \Log::info("#####  -  PRINT MESSAGE = ".$request->input('entry.messaging.message.text');
+        \Log::info("#####  -  PRINT MESSAGE = ".$request->input('entry.messaging.message.text'));
 
 
         $sender = new SenderRequest;

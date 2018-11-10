@@ -49,17 +49,7 @@ class BotController extends Controller
         //\Log::info("#####  -  PRINT INPUT = ".$data['entities']);
         //\Log::info("#####  -  PRINT CONFIANCE = ".$data['confidence']);
 
-        $event = file_get_contents("php://input");
-        $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
-        $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
 
-        $arryEntities = collect($entities);
-
-
-
-        $keys = $arryEntities->keys()->first();
-
-        \Log::info("#####  -  ARRAY DE KEYS = ".$keys);
 
 
 
@@ -82,10 +72,24 @@ class BotController extends Controller
         if (!$postback) {
             $botResourcesResolver = new Resolver;
             $botResourcesResolver->register(SendSuggestions::class);
+
+            $event = file_get_contents("php://input");
+            $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
+            $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
+
+            $arryEntities = collect($entities);
+
+            $keys = $arryEntities->keys()->first();
+
+            \Log::info("#####  -  ARRAY DE KEYS = ".$keys);
+
+
+
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-            else if ($keys === "saudacao"){
+            
+            if ($keys === "saudacao"){
               $bot->message('text', 'Loco de especial! Qual é a boa?');
             }
             else if ($keys === "teste"){

@@ -76,30 +76,24 @@ class BotController extends Controller
             $event = file_get_contents("php://input");
             $event = json_decode($event, true, 512, JSON_BIGINT_AS_STRING);
             $entities = $event['entry'][0]['messaging'][0]['message']['nlp']['entities'];
-
             $arryEntities = collect($entities);
-
             $keys = $arryEntities->keys()->first();
-
-            \Log::info("#####  -  ARRAY DE KEYS = ".$keys);
-
-
 
             if ($botResourcesResolver->resolver($sender, $bot)) {
                 return '';
             }
-            
+
             if ($keys === "saudacao"){
-              $bot->message('text', 'Loco de especial! Qual é a boa?');
+              $bot->message('text', 'Oi, tudo bem? É um prazer poder lhe atender. Use o menu ao lado para ver as opções disponíveis.');
             }
             else if ($keys === "teste"){
-              $bot->message('text', 'A essa hora? Vai deitá pros pé!');
+              $bot->message('text', 'Claro! Quanto mais eu for testado, mais eu vou aprender! :)');
             }
             else if ($keys === "despedida"){
-              $bot->message('text', 'Blz maluco, vai pela sombra :)');
+              $bot->message('text', 'Foi um prazer poder lhe ajudar! Volte sempre! :)');
             }
             else {
-              $bot->message('text', 'Desculpe, eu não sei o que você quis dizer...');
+              $bot->message('text', 'Desculpe, eu ainda estou aprendendo. Não entendi o que você quis dizer...');
               $bot->message('text', 'Use o menu ao lado para ver as opções disponíveis.');
             }
             return '';

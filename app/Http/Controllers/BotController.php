@@ -32,25 +32,7 @@ class BotController extends Controller
     {
 
 
-        //\Log::info("#####  -  PRINT REQUEST = ".$request);
-
-        //$input = $request->input('entry.messaging.message.nlp.entities');
-
-        // $input = $request->all();
-
-        // $input = $request->json()->all();
-
-
-
-
-        // \Log::info("#####  -  PRINT DATA = " . $request->input('0.entities') );
-        // \Log::info($request->input('0.entities'));
-
-        //\Log::info("#####  -  PRINT INPUT = ".$data['entities']);
-        //\Log::info("#####  -  PRINT CONFIANCE = ".$data['confidence']);
-
-
-
+        \Log::info("#####  -  PRINT REQUEST = ".$request);
 
 
         $sender = new SenderRequest;

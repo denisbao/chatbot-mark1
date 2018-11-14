@@ -67,7 +67,7 @@ class BotController extends Controller
 
             if ($keys === "saudacao"){
               $bot->message('text', 'Oi, tudo bem? É um prazer poder lhe atender. Use o menu ao lado para ver as opções disponíveis.');
-              \Log::info("#####  -  PRINT RESPOSTA = ".$bot->message);
+              \Log::info("#####  -  PRINT RESPOSTA = ".$bot);
 
             }
             else if ($keys === "teste"){

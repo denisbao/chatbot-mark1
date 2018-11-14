@@ -84,6 +84,8 @@ class BotController extends Controller
 
         foreach ($postback->messages as $message) {
             (new MessagesBuilderRepository)->createMessage($bot, $message);
+
+            \Log::info("#####  -  PRINT RESPOSTA = ".$message);
         }
 
         return '';
